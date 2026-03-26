@@ -29,6 +29,7 @@
   if individual.fill == "empty" {
     quadrants = ()
   } else if individual.fill in ("I-II-III-IV", "I-II-III", "I-II-IV", "I-II", "I-III-IV", "I-III", "I-IV", "I", "II-III-IV", "II-III", "II-IV", "II", "III-IV", "III", "IV") {
+    quadrants = ()
     for substring in individual.fill.split("-") {
       if      substring == "I"   {quadrants.push(1)}
       else if substring == "II"  {quadrants.push(2)}
@@ -83,7 +84,7 @@
         let c = (i - 10)/5
         if calc.pow(c, 2) <= 2 {
           let discriminant = calc.sqrt(2 - calc.pow(c, 2))
-          line((x + (c + discriminant)/8, y + (-c + discriminant)/8), (x + (c - discriminant)/8, y + (-c - discriminant)/8), stroke: fill-style + 0.25pt * length-scale)
+          line((x + (c + discriminant)/8, y + (-c + discriminant)/8), (x + (c - discriminant)/8, y + (-c - discriminant)/8), stroke: fill-style + 0.25pt * draw-data.length-scale)
         }
       }
     }

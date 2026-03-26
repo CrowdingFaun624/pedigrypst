@@ -214,10 +214,21 @@
       } else {
         parent-x = offsets.at(children.parents.ind-id)
       }
-      let child-id = children.childs.at(0).ind-id
-      let child-x = offsets.at(child-id)
-      if parent-x != child-x and calc.abs(parent-x - child-x) < 0.075 {
-        offsets.at(child-id) = parent-x
+      let first-child = children.childs.at(0)
+      let child-ids
+      let child-x
+      if first-child.type == "individual" {
+        child-ids = (first-child.ind-id,)
+        child-x = offsets.at(first-child.ind-id)
+      } else { // twin
+        child-ids = first-child.individuals.map(individual => individual.ind-id)
+        let twins-x = first-child.individuals.map(individual => offsets.at(individual.ind-id))
+        child-x = (calc.min(..twins-x) + calc.max(..twins-x)) / 2
+      }
+      if calc.abs(parent-x - child-x) > 0.0001 and calc.abs(parent-x - child-x) < 0.075 {
+        for child-id in child-ids {
+          offsets.at(child-id) = offsets.at(child-id) - child-x + parent-x
+        }
         has-changes = true
       }
     }
