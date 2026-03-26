@@ -159,7 +159,7 @@
 }
 
 // returns a modified data and duplicates, individuals, maximum-generation, individuals-by-gen, individuals-by-gen-indices, duplicates-individuals, individuals-x, individuals-unions, and individuals-childrens
-#let process-individuals(data, stuff) = {
+#let process-individuals(data, contents) = {
   let duplicates = ()
   let individuals = ()
   let maximum-generation = 0
@@ -171,7 +171,7 @@
   let individuals-childrens = ()
 
   let individual-index = 0
-  for item in stuff {
+  for item in contents {
     if item.type in "duplicate" {
       duplicates.push(item)
     }
@@ -208,12 +208,12 @@
   return data
 }
 
-#let process-duplicates(data, stuff) = {
+#let process-duplicates(data, contents) = {
   let duplicates-individuals = data.duplicates-individuals
   let duplicates-indices = ()
 
   let individual-index = 0
-  for item in stuff {
+  for item in contents {
     if item.type == "duplicate" {
       let individual = from-coord(data, parse-id(item.individual))
       duplicates-individuals.at(individual-index) = individual
@@ -232,12 +232,12 @@
   return data
 }
 
-#let process-twins(data, stuff) = {
+#let process-twins(data, contents) = {
   let twins = ()
   let twins-individuals = ()
   let twins-childrens = ()
 
-  for item in stuff {
+  for item in contents {
     if item.type == "twin" {
       twins.push(item)
       let twin-individuals = ()
@@ -262,14 +262,14 @@
   return data
 }
 
-#let process-unions(data, stuff) = {
+#let process-unions(data, contents) = {
   let unions = ()
   let unions-individuals = ()
   let individuals-unions = data.individuals-unions
   let unions-childrens = ()
 
   let union-index = 0
-  for item in stuff {
+  for item in contents {
     if item.type == "union" {
       unions.push(item)
       let individual-1-data = from-coord(data, parse-id(item.individual-1-id))
@@ -294,7 +294,7 @@
   return data
 }
 
-#let process-childrens(data, stuff) = {
+#let process-childrens(data, contents) = {
   let childrens = ()
   let childrens-parents = ()
   let individuals-childrens = data.individuals-childrens
@@ -304,7 +304,7 @@
   let childrens-children = ()
 
   let children-index = 0
-  for item in stuff {
+  for item in contents {
     if item.type == "children" {
       childrens.push(item)
       let parents = from-coord(data, parse-id(item.parents-id))
