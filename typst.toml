@@ -3,6 +3,7 @@ name = "pedigrypst"
 version = "0.1.0"
 entrypoint = "src/main.typ"
 authors = ["CrowdingFaun624"]
+license = "MIT"
 description = "Draw pedigrees."
 repository = "https://github.com/CrowdingFaun624/pedigrypst"
 keywords = [
