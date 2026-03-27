@@ -364,6 +364,9 @@
         if children.children.infertile {
           line((parent-x + 0.0625, parent-y - 0.5625), (parent-x - 0.0625, parent-y - 0.5625), stroke: no-children-style)
         }
+        if children.children.label != none {
+          content((parent-x - 0.05, parent-y - 0.45), text(children.children.label, 5.5pt * draw-data.length-scale), anchor: "base-east")
+        }
         continue
       }
       let minimum-generation = children.minimum-generation
@@ -400,6 +403,10 @@
       let (lines, descent-obstructed-childrens, descent-obstructed-unions, has-final-obstruction) = draw-vertical-line(heredity-x-start, heredity-y-start + 0.125, heredity-y-start, data, draw-data, (children.id,), union-ids, line-of-descent-style)
       lines
 
+      if children.children.label != none {
+        content((calc.min(heredity-x-end, heredity-x-start) - 0.05, sibling-y + 0.05), text(children.children.label, 5.5pt * draw-data.length-scale), anchor: "base-east")
+      }
+
       // use end of the line of descent, which may vary if there is an obstruction
       line((sibling-x-start, sibling-y), (sibling-x-end, sibling-y), stroke: sibling-line-style) // sibling line
       line((heredity-x-start, heredity-y-start + 0.125), (heredity-x-end, heredity-y-start + 0.125), stroke: line-of-descent-style)
@@ -416,6 +423,10 @@
           let twin-x = child.individuals.map(individual => offsets.at(individual.ind-id))
           child-x = (calc.min(..twin-x) + calc.max(..twin-x)) / 2
           y-end = generations-y.at(minimum-generation - 1) + 0.375
+
+          if child.twin.label != none {
+            content((child-x, sibling-y + 0.05), text(child.twin.label, 5.5pt * draw-data.length-scale), anchor: "base")
+          }
 
           // draw twin lines
           let twin-style = {draw-data.default-twin-style; child.twin.style}
@@ -456,22 +467,34 @@
       let end-x = offsets.at(union.individual-2.ind-id)
       let end-y = generations-y.at(union.individual-2.generation - 1)
       let union-style = {draw-data.default-union-style; union.union.style}
+
+      let label-sep
       if union.union.consanguineous {
+        label-sep = 0.125
         let angle = calc.atan2(end-x - start-x, end-y - start-y)
         line((start-x, start-y), (end-x, end-y), stroke: white + 3pt * draw-data.length-scale)
         line((start-x + 0.05 * -calc.sin(angle), start-y + 0.05 * calc.cos(angle)), (end-x + 0.05 * -calc.sin(angle), end-y + 0.05 * calc.cos(angle)), stroke: union-style)
         line((start-x, start-y - 0.05), (end-x, end-y - 0.05), stroke: union-style)
       } else {
+        label-sep = 0.0625
         line((start-x, start-y), (end-x, end-y), stroke: union-style)
       }
+
       let center-x = (start-x + end-x) / 2
       let center-y = (start-y + end-y) / 2
       let divorced-style = {draw-data.default-divorced-style; union.union.divorced-style}
       if union.union.divorced == 2 {
         line((center-x - 0.1875, center-y - 0.125), (center-x + 0.0625, center-y + 0.125), stroke: divorced-style)
         line((center-x - 0.0625, center-y - 0.125), (center-x + 0.1875, center-y + 0.125), stroke: divorced-style)
+        label-sep = calc.max(0.1875, label-sep)
       } else if union.union.divorced in (1, true) {
         line((center-x - 0.125, center-y - 0.125), (center-x + 0.125, center-y + 0.125), stroke: divorced-style)
+        label-sep = calc.max(0.1875, label-sep)
+      }
+      // label
+      if union.union.label != none {
+        let angle = calc.atan2(end-x - start-x, end-y - start-y)
+        content((center-x + label-sep * -calc.sin(angle), center-y + label-sep * calc.cos(angle)), text(union.union.label, 5.5pt * draw-data.length-scale), anchor: "base", angle: angle)
       }
     }
     // draw duplicate lines
@@ -485,6 +508,21 @@
         let middle-x = (x + other-x - individual.individual.bezier * (y - other-y))/2
         let middle-y = (y + other-y + individual.individual.bezier * (x - other-x))/2
         bezier((x, y), (other-x, other-y), (middle-x, middle-y), stroke: {(dash: "dashed"); draw-data.default-duplicate-curve-style; individual.individual.curve-style})
+        if individual.individual.label != none {
+          let angle = calc.atan2(x - other-x, y - other-y)
+          let label-x = (x + other-x - 0.5 * individual.individual.bezier * (y - other-y))/2
+          let label-y = (y + other-y + 0.5 * individual.individual.bezier * (x - other-x))/2
+          let text-angle = angle
+          if angle > 90deg and angle < 270deg {
+            text-angle = 180deg - angle
+          }
+          let label = text(individual.individual.label, 5.5pt * draw-data.length-scale)
+          if individual.individual.bezier * calc.cos(angle) < 0 {
+            content((label-x + 0.05 * calc.sin(angle), label-y - 0.05 * calc.cos(text-angle)), label, anchor: "north", angle: text-angle)
+          } else {
+            content((label-x + 0.05 * calc.sin(angle), label-y + 0.05 * calc.cos(angle)), label, anchor: "base", angle: text-angle)
+          }
+        }
       }
     }
 

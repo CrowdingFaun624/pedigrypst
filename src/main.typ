@@ -641,6 +641,21 @@
   /// ```
   /// -> int | float | none
   bezier: 0.5,
+  /// The content to place next to the curve.
+  /// ```examplec
+  /// >>> set text(font: "libertinus serif")
+  /// >>> import pedigrypst: *
+  /// pedigree(
+  /// >>>   length: 2cm,
+  /// >>>   generation-labels: false,
+  ///   {
+  ///     individual(1, 1, "male")
+  ///     duplicate(1, "i1-1", label: [Duplication])
+  ///   }
+  /// )
+  /// ```
+  /// -> content | none
+  label: none,
   /// The #cetz-link("basics/styling", [CeTZ style]) to give to the curved line. Must be a dictionary. Defaults to being dashed.
   /// ```examplec
   /// >>> set text(font: "libertinus serif")
@@ -678,6 +693,7 @@
     generation: generation,
     individual: individual,
     bezier: bezier,
+    label: label,
     curve-style: curve-style,
     lightness: lightness,
   ),)
@@ -688,7 +704,7 @@
 /// >>> set text(font: "libertinus serif")
 /// >>> import pedigrypst: *
 /// pedigree(
-/// >>>   length: 3cm,
+/// >>>   length: 2cm,
 /// >>>   generation-labels: false,
 ///   {
 ///     individual(1, 1, "male")
@@ -698,8 +714,7 @@
 ///     twins("i2-1", "i2-2", monozygotic: true)
 ///     union("i1-1", "i1-2")
 ///     children("u1", "t1")
-///   }
-/// )
+/// })
 /// ```
 #let twins(
   /// Multiple individual or duplicate references to place in the twins. Can have more than two items. -> str
@@ -729,6 +744,25 @@
   /// ```
   /// -> bool | str | array
   monozygotic: false,
+  /// The label to place on the sibling line above the center of the twins.
+  /// ```examplec
+  /// >>> set text(font: "libertinus serif")
+  /// >>> import pedigrypst: *
+  /// pedigree(
+  /// >>>   length: 2cm,
+  /// >>>   generation-labels: false,
+  ///   {
+  ///     individual(1, 1, "male", label: none)
+  ///     individual(2, 1, "female")
+  ///     individual(2, 2, "male")
+  ///     individual(2, 3, "male")
+  ///     twins("i2-2", "i2-3", label: [Twins])
+  ///     children("i1-1", "i2-1", "t1")
+  ///   }
+  /// )
+  /// ```
+  /// -> content | none
+  label: none,
   /// The #cetz-link("basics/styling", [CeTZ style]) to draw all of the twin lines for these twins with. Must be a dictionary.
   /// ```examplec
   /// >>> set text(font: "libertinus serif")
@@ -774,6 +808,7 @@
     type: "twin",
     individuals: individuals.pos(),
     monozygotic: monozygotic,
+    label: label,
     style: style,
     monozygotic-style: monozygotic-style,
   ),)
@@ -835,6 +870,22 @@
   /// ```
   /// -> bool | int
   divorced: false,
+  /// The label to place above the union line.
+  /// ```examplec
+  /// >>> set text(font: "libertinus serif")
+  /// >>> import pedigrypst: *
+  /// pedigree(
+  /// >>>   length: 3cm,
+  /// >>>   generation-labels: false,
+  ///   {
+  ///     individual(1, 1, "male")
+  ///     individual(1, 2, "male")
+  ///     union("i1-1", "i1-2", label: [Gay\*])
+  ///   }
+  /// )
+  /// ```
+  /// -> content | none
+  label: none,
   /// The #cetz-link("basics/styling", [CeTZ style]) to give to the union line of this unions. Must be a dictionary.
   /// ```examplec
   /// >>> set text(font: "libertinus serif")
@@ -874,6 +925,7 @@
     individual-2-id: individual-2,
     consanguineous: consanguineous,
     divorced: divorced,
+    label: label,
     style: style,
     divorced-style: divorced-style,
   ),)
@@ -917,6 +969,25 @@
   /// ```
   /// -> bool
   infertile: false,
+  /// The content to put on the sibling line (if possible) next to the line of descent.
+  /// ```examplec
+  /// >>> set text(font: "libertinus serif")
+  /// >>> import pedigrypst: *
+  /// pedigree(
+  /// >>>   length: 3cm,
+  /// >>>   generation-labels: false,
+  ///   {
+  ///     individual(1, 1, "male")
+  ///     individual(1, 2, "female")
+  ///     individual(2, 1, "unknown")
+  ///     individual(2, 2, "male")
+  ///     union("i1-1", "i1-2")
+  ///     children("u1", "i2-1", "i2-2", label: [Hello])
+  ///   }
+  /// )
+  /// ```
+  /// -> content | none
+  label: none,
   /// The #cetz-link("basics/styling", [CeTZ style]) to give to the no children indicator for this children. Must be a dictionary.
   /// ```examplec
   /// >>> set text(font: "libertinus serif")
@@ -1007,6 +1078,7 @@
     parents-id: parents, // union id or individual id
     children: children.pos(),
     infertile: infertile,
+    label: label,
     no-children-style: no-children-style,
     line-of-descent-style: line-of-descent-style,
     sibling-line-style: sibling-line-style,
