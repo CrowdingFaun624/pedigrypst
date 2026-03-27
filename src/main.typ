@@ -2,6 +2,7 @@
 ///
 /// Use syntax such as:
 /// ```examplec
+  /// >>> set text(font: "libertinus serif")
 /// >>> import pedigrypst: *
 /// pedigree(length: 1.5cm, {
 ///   individual(1, 1, "male")
@@ -19,16 +20,18 @@
   convergence-time: 100,
   /// The visual minimum height of each generation. -> int | float
   generation-height: 1,
-  /// The length used on the #cetz-link("api/internal/canvas/#length", [CeTZ canvas]). Scales the pedigree relative to $1"cm"$. -> length
+  /// The length used on the #cetz-link("api/internal/canvas/#length", [CeTZ canvas]). Scales the pedigree relative to #raw("1cm", lang: "typc"). -> length
   length: 1cm,
   /// Whether to add Roman numerals indicating generation number to the left side of the pedigree.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(generation-labels: true, length: 1.5cm, {
   ///   individual(1, 1, "male")
   /// })
   /// ```
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(generation-labels: false, length: 1.5cm, {
   ///   individual(1, 1, "male")
@@ -38,6 +41,7 @@
   generation-labels: true,
   /// The #cetz-link("basics/styling", [CeTZ style]) to give to the outline of all individuals. Must be a dictionary.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>  length: 4cm,
@@ -55,6 +59,7 @@
   stroke-style: (:),
   /// The color to give to the empty part of all individuals.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>  length: 4cm,
@@ -69,6 +74,7 @@
   empty-style: auto,
   /// The color to give to the filled part of all individuals.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>  length: 4cm,
@@ -83,6 +89,7 @@
   fill-style: auto,
   /// The #cetz-link("basics/styling", [CeTZ style]) to give to all deceased crosses. Must be a dictionary.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>  length: 4cm,
@@ -97,6 +104,7 @@
   dead-style: (:),
   /// The #cetz-link("basics/styling", [CeTZ style]) to give to all adoption brackets. Must be a dictionary.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 4cm,
@@ -111,6 +119,7 @@
   adopted-style: (:),
   /// The #cetz-link("basics/styling", [CeTZ style]) to give to all propositi. Must be a dictionary.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 4cm,
@@ -125,6 +134,7 @@
   propositus-style: (:),
   /// The #cetz-link("basics/styling", [CeTZ style]) to give to all duplicate lines. Must be a dictionary. Defaults to being dashed.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 4cm,
@@ -140,6 +150,7 @@
   duplicate-curve-style: (:),
   /// The #cetz-link("basics/styling", [CeTZ style]) to give to all twin lines. Must be a dictionary.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 2cm,
@@ -158,6 +169,7 @@
   twin-style: (:),
   /// The #cetz-link("basics/styling", [CeTZ style]) to give to the monozygocity indicator of all twins. Must be a dictionary.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 2cm,
@@ -176,6 +188,7 @@
   monozygotic-style: (:),
   /// The #cetz-link("basics/styling", [CeTZ style]) to give to the union line of all unions. Must be a dictionary.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 4cm,
@@ -192,6 +205,7 @@
   union-style: (:),
   /// The #cetz-link("basics/styling", [CeTZ style]) to give to the separation indicators of all unions. Must be a dictionary.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 4cm,
@@ -208,6 +222,7 @@
   divorced-style: (:),
   /// The #cetz-link("basics/styling", [CeTZ style]) to give to the no children indicator for all children. Must be a dictionary.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 3cm,
@@ -225,6 +240,7 @@
   no-children-style: (:),
   /// The #cetz-link("basics/styling", [CeTZ style]) to give to all lines of descent. Must be a dictionary.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 2.5cm,
@@ -244,6 +260,7 @@
   line-of-descent-style: (:),
   /// The #cetz-link("basics/styling", [CeTZ style]) to give to all sibling lines. Must be a dictionary.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 2.5cm,
@@ -263,6 +280,7 @@
   sibling-line-style: (:),
   /// The #cetz-link("basics/styling", [CeTZ style]) to give to all child lines. Must be a dictionary.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 2.5cm,
@@ -327,12 +345,13 @@
 
 /// Creates a single individual in a pedigree.
 #let individual(
-  /// The generation of the individual, starting from $1$. -> int
+  /// The generation of the individual, starting from #raw("1", lang: "typc"). -> int
   generation,
-  /// The ordinality of the individual within its generation, starting from $1$. This is used only for the label and to reference this individual. -> int
+  /// The ordinality of the individual within its generation, starting from #raw("1", lang: "typc"). This is used only for the label and to reference this individual. -> int
   ind-number,
-  /// The shape of the individual. Must be `"male"`, `"female"`, `"unknown"`, or `"miscarriage"`.
+  /// The shape of the individual. Must be #raw("\"male\"", lang: "typc"), #raw("\"female\"", lang: "typc"), #raw("\"unknown\"", lang: "typc"), or #raw("\"miscarriage\"", lang: "typc").
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>> length: 2cm,
@@ -347,10 +366,11 @@
   /// ```
   /// -> str
   sex,
-  /// The pattern of filling the individual. Must be `"empty"`, `"filled"`, `"unknown"`, `"dot"`, `"left"`, `"right"`, `"up"`, `"down"`, or use quadrant notation.
+  /// The pattern of filling the individual. Must be #raw("\"empty\"", lang: "typc"), #raw("\"filled\"", lang: "typc"), #raw("\"unknown\"", lang: "typc"), #raw("\"dot\"", lang: "typc"), #raw("\"left\"", lang: "typc"), #raw("\"right\"", lang: "typc"), #raw("\"up\"", lang: "typc"), #raw("\"down\"", lang: "typc"), or use quadrant notation.
   ///
-  /// #link("https://en.wikipedia.org/wiki/Quadrant_(plane_geometry)", [Quadrant]) notation involves placing the capitalized Roman numerals of a quadrant, in order, separated by hyphens. For example, `"I-III-IV"` is valid quadrant notation.
+  /// #link("https://en.wikipedia.org/wiki/Quadrant_(plane_geometry)", [Quadrant]) notation involves placing the capitalized Roman numerals of a quadrant, in order, separated by hyphens. For example, #raw("\"I-III-IV\"", lang: "typc") is valid quadrant notation.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 2cm,
@@ -373,10 +393,11 @@
   /// ```
   /// -> str
   fill: "empty",
-  /// Whether to draw the deceased indicator on the individual. Can be `true`, `false`, `"true"`, `"false"`, `"single"`, and `"double"`.
+  /// Whether to draw the deceased indicator on the individual. Can be #raw("true", lang: "typc"), #raw("false", lang: "typc"), #raw("\"true\"", lang: "typc"), #raw("\"false\"", lang: "typc"), #raw("\"single\"", lang: "typc"), and #raw("\"double\"", lang: "typc").
   ///
-  /// `true`, `"true"`, and `"single"` all create one cross up and to the right, and `"double"` creates another cross up and to the left.
+  /// #raw("true", lang: "typc"), #raw("\"true\"", lang: "typc"), and #raw("\"single\"", lang: "typc") all create one cross up and to the right, and #raw("\"double\"", lang: "typc") creates another cross up and to the left.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 3cm,
@@ -390,10 +411,11 @@
   /// ```
   /// -> bool | str
   dead: false,
-  /// Whether to draw the adopted brackets around the individual. Can be `true`, `false`, `"true"`, `"false"`, and `"alt"`.
+  /// Whether to draw the adopted brackets around the individual. Can be #raw("true", lang: "typc"), #raw("false", lang: "typc"), #raw("\"true\"", lang: "typc"), #raw("\"false\"", lang: "typc"), and #raw("\"alt\"", lang: "typc").
   ///
-  /// `true` and `"true"` draw whole brackets around the individual, while `"alt"` draws brackets with two slits near the middle.
+  /// #raw("true", lang: "typc") and #raw("\"true\"", lang: "typc") draw whole brackets around the individual, while #raw("\"alt\"", lang: "typc") draws brackets with two slits near the middle.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 3cm,
@@ -409,6 +431,7 @@
   adopted: false,
   /// Whether to draw a propositus. If the alignment is unspecified, the propositus will go in the bottom-left corner.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 4cm,
@@ -425,6 +448,7 @@
   propositus: false,
   /// The label to place beneath the individual. If auto, the individual's generation and ind-number will be shown.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 3cm,
@@ -440,6 +464,7 @@
   label: auto,
   /// Content to put inside of the individual.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 4cm,
@@ -454,6 +479,7 @@
   in-label: none,
   /// The #cetz-link("basics/styling", [CeTZ style]) to give to the outline of the individual. Must be a dictionary.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>  length: 4cm,
@@ -467,6 +493,7 @@
   stroke-style: (:),
   /// The color to give to the empty part of all individuals.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>  length: 4cm,
@@ -480,6 +507,7 @@
   empty-style: auto,
   /// The color to give to the filled part of all individuals.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>  length: 4cm,
@@ -493,6 +521,7 @@
   fill-style: auto,
   /// The #cetz-link("basics/styling", [CeTZ style]) to give to all deceased crosses. Must be a dictionary.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>  length: 4cm,
@@ -506,6 +535,7 @@
   dead-style: (:),
   /// The #cetz-link("basics/styling", [CeTZ style]) to give to all adoption brackets. Must be a dictionary.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 4cm,
@@ -519,6 +549,7 @@
   adopted-style: (:),
   /// The #cetz-link("basics/styling", [CeTZ style]) to give to all propositi. Must be a dictionary.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 4cm,
@@ -551,8 +582,9 @@
   ),)
 }
 
-/// Creates a lighter copy of an individual and shows its link to it usin a curved line.
+/// Creates a lighter copy of an individual and shows its link to it using a curved line.
 /// ```examplec
+/// >>> set text(font: "libertinus serif")
 /// >>> import pedigrypst: *
 /// pedigree(
 /// >>>   length: 2cm,
@@ -580,10 +612,11 @@
   generation,
   /// The individual reference to the individual this duplicate is duplicating. -> str
   individual,
-  /// Determines the control point of the bezier for the curved line. If `none`, the curved line will not be drawn.
+  /// Determines the control point of the bezier for the curved line. If #raw("none", lang: "typc"), the curved line will not be drawn.
   ///
   /// If the duplicate is to the right of the duplicated individual, positive values will curve the line upwards. If the duplicate is to the left of the duplicated individual, positive values will curve the line downwards.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 2cm,
@@ -606,6 +639,7 @@
   bezier: 0.5,
   /// The #cetz-link("basics/styling", [CeTZ style]) to give to the curved line. Must be a dictionary. Defaults to being dashed.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 4cm,
@@ -620,6 +654,7 @@
   curve-style: (:),
   /// The amount to brighten the duplicate by.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 4cm,
@@ -646,6 +681,7 @@
 
 /// Creates twins
 /// ```examplec
+/// >>> set text(font: "libertinus serif")
 /// >>> import pedigrypst: *
 /// pedigree(
 /// >>>   length: 3cm,
@@ -664,10 +700,11 @@
 #let twins(
   /// Multiple individual or duplicate references to place in the twins. Can have more than two items. -> str
   ..individuals,
-  /// Whether to draw the monozygocity indicator between each pair of twins. If not an array, it is converted into an array of length $1$. The length of the array should be one less than the number of twins.
+  /// Whether to draw the monozygocity indicator between each pair of twins. If not an array, it is converted into an array of length #raw("1", lang: "typc"). The length of the array should be one less than the number of twins.
   ///
-  /// Each item of the array can be `true`, `false`, `"true"`, `"false"`, or `"unknown"`. If `true` or `"true"`, a horizontal line will be drawn near the sibling line. If `"unknown"`, a question mark will be drawn between the individuals.
+  /// Each item of the array can be #raw("true", lang: "typc"), #raw("false", lang: "typc"), #raw("\"true\"", lang: "typc"), #raw("\"false\"", lang: "typc"), or #raw("\"unknown\"", lang: "typc"). If #raw("true", lang: "typc") or #raw("\"true\"", lang: "typc"), a horizontal line will be drawn near the sibling line. If #raw("\"unknown\"", lang: "typc"), a question mark will be drawn between the individuals.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 2cm,
@@ -690,6 +727,7 @@
   monozygotic: false,
   /// The #cetz-link("basics/styling", [CeTZ style]) to draw all of the twin lines for these twins with. Must be a dictionary.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 2cm,
@@ -707,6 +745,7 @@
   style: (:),
   /// The #cetz-link("basics/styling", [CeTZ style]) to draw the monozygocity indicators for these twins with. Must be a dictionary.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 2cm,
@@ -738,6 +777,7 @@
 
 /// Creates a union between two individuals. It does not specify the children, only the two individuals.
 /// ```examplec
+/// >>> set text(font: "libertinus serif")
 /// >>> import pedigrypst: *
 /// pedigree(
 /// >>>   length: 4cm,
@@ -756,6 +796,7 @@
   individual-2,
   /// Whether to draw the union with double lines, indicating a #link("https://en.wikipedia.org/wiki/Consanguinity", [consanguineous]) relationship.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 4cm,
@@ -771,8 +812,9 @@
   consanguineous: false,
   /// Whether to draw a cross indicating divorce through the union.
   ///
-  /// Can be `true`, `false`, `0`, `1`, or `2`. If it is `true` or `1`, then one cross will be drawn. If it is `2`, then two crosses will be drawn.
+  /// Can be #raw("true", lang: "typc"), #raw("false", lang: "typc"), #raw("0", lang: "typc"), #raw("1", lang: "typc"), or #raw("2", lang: "typc"). If it is #raw("true", lang: "typc") or #raw("1", lang: "typc"), then one cross will be drawn. If it is #raw("2", lang: "typc"), then two crosses will be drawn.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 3cm,
@@ -791,6 +833,7 @@
   divorced: false,
   /// The #cetz-link("basics/styling", [CeTZ style]) to give to the union line of this unions. Must be a dictionary.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 4cm,
@@ -806,6 +849,7 @@
   style: (:),
   /// The #cetz-link("basics/styling", [CeTZ style]) to give to the separation indicators of this unions. Must be a dictionary.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 4cm,
@@ -833,6 +877,7 @@
 
 /// Creates a line of descent, a sibling line, and child lines from a union or individual to any number of children.
 /// ```examplec
+/// >>> set text(font: "libertinus serif")
 /// >>> import pedigrypst: *
 /// pedigree(
 /// >>>   length: 2cm,
@@ -853,6 +898,7 @@
   ..children,
   /// If no children are present, this specifies whether to draw an additional horizontal line beneath the no-children indicator.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 4cm,
@@ -869,6 +915,7 @@
   infertile: false,
   /// The #cetz-link("basics/styling", [CeTZ style]) to give to the no children indicator for this children. Must be a dictionary.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 3cm,
@@ -885,6 +932,7 @@
   no-children-style: (:),
   /// The #cetz-link("basics/styling", [CeTZ style]) to give to the line of descent. Must be a dictionary.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 2.5cm,
@@ -903,6 +951,7 @@
   line-of-descent-style: (:),
   /// The #cetz-link("basics/styling", [CeTZ style]) to give to the sibling line. Must be a dictionary.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 2.5cm,
@@ -921,6 +970,7 @@
   sibling-line-style: (:),
   /// The #cetz-link("basics/styling", [CeTZ style]) to give to the child line. The styles must be dictionaries. If a dictionary is given, the style will be applied to all child lines. If an array is given with the same length as the number of children, each style will be applied to the corresponding child line.
   /// ```examplec
+  /// >>> set text(font: "libertinus serif")
   /// >>> import pedigrypst: *
   /// pedigree(
   /// >>>   length: 2.5cm,
