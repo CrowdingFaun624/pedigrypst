@@ -217,7 +217,7 @@
       let first-child = children.childs.at(0)
       let child-ids
       let child-x
-      if first-child.type == "individual" {
+      if first-child.type in ("individual", "duplicate") {
         child-ids = (first-child.ind-id,)
         child-x = offsets.at(first-child.ind-id)
       } else { // twin

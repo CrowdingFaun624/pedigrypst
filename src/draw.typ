@@ -113,7 +113,7 @@
 
     if individual.fill == "unknown" {
       for i in range(10) {
-        line((x - 0.25 + i/40, y - i/40), (x + i/40, y + 0.25 - i/40), stroke: fill-style + 0.25pt * length-scale)
+        line((x - 0.25 + i/40, y - i/40), (x + i/40, y + 0.25 - i/40), stroke: fill-style + 0.25pt * draw-data.length-scale)
       }
     }
     if individual.fill == "dot" {
@@ -138,9 +138,9 @@
       for i in range(12) {
         let c = -(i - 5)/5
         if c > 1/(1 + calc.sqrt(3)) {
-          line((x + 0.25 * (1 - c)/(1 - calc.sqrt(3)), y + 0.0625 + 0.25 * ((1 - c)/(1 - calc.sqrt(3)) + c)), (x + 0.25 * (1 - c)/(1 + calc.sqrt(3)), y + 0.0625 + 0.25 * ((1 - c)/(1 + calc.sqrt(3)) + c)), stroke: fill-style + 0.25pt * length-scale)
+          line((x + 0.25 * (1 - c)/(1 - calc.sqrt(3)), y + 0.0625 + 0.25 * ((1 - c)/(1 - calc.sqrt(3)) + c)), (x + 0.25 * (1 - c)/(1 + calc.sqrt(3)), y + 0.0625 + 0.25 * ((1 - c)/(1 + calc.sqrt(3)) + c)), stroke: fill-style + 0.25pt * draw-data.length-scale)
         } else {
-          line((x + 0.25 * (-0.5 - c), y + 0.0625 - 0.25 * 0.5), (x + 0.25 * (1 - c)/(1 + calc.sqrt(3)), y + 0.0625 + 0.25 * ((1 - c)/(1 + calc.sqrt(3)) + c)), stroke: fill-style + 0.25pt * length-scale)
+          line((x + 0.25 * (-0.5 - c), y + 0.0625 - 0.25 * 0.5), (x + 0.25 * (1 - c)/(1 + calc.sqrt(3)), y + 0.0625 + 0.25 * ((1 - c)/(1 + calc.sqrt(3)) + c)), stroke: fill-style + 0.25pt * draw-data.length-scale)
         }
       }
     }
