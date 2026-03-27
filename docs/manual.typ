@@ -9,20 +9,36 @@
 #let CeTZ = link("https://github.com/johannes-wolf/cetz", [CeTZ])
 #let cetz-link(dest, body) = link("https://cetz-package.github.io/docs/" + dest, body)
 #let hbar = line(end: (100%, 0%))
+#set page(numbering: "1")
 
-#align(center, text([= Pedigrypst], size: 24pt))
+#align(center, text([= `pedigrypst`], size: 24pt))
 
 #align(center, [
-  A #link("https://typst.app", [Typst]) package for pedigrees, built on top of #cetz-link("", [CeTZ])
+  A #link("https://typst.app", [Typst]) package for building pedigrees, built on top of #cetz-link("", [CeTZ])
 
   #link("https://github.com/CrowdingFaun624/Pedigrypst", `github.com/CrowdingFaun624/Pedigrypst`)
 
   #strong[Version 0.1.0]
 ])
-\ \
+#v(1in)
+
+// Thanks to fletcher for having nicely formatted things that I don't know how to do
+#columns(2)[
+	#outline(
+		title: align(center, box(width: 100%)[Guide]),
+		indent: 1em,
+		target: selector(heading).before(<toc-functions>, inclusive: false),
+	)
+	#colbreak()
+	#outline(
+		title: align(center, box(width: 100%)[Reference]),
+		indent: 1em,
+		target: selector(heading.where(level: 2)).or(heading.where(level: 3)).after(<toc-functions>, inclusive: true),
+	)
+]
 
 #pagebreak()
-== Pedigree
+== Pedigree<toc-pedigree>
 #align(center, pedigree(length: 4cm, generation-labels: false, {
   import pedigrypst: *
   individual(1, 1, "male", label: none)
@@ -76,7 +92,7 @@
 
 There are five different types of objects in a pedigree in Pedigrypst.
 
-=== Individual
+=== Individual<toc-pedigree-individual>
 
 An *individual* is a single square, circle, or other shape that corresponds to a single organism.
 
@@ -90,26 +106,26 @@ An *individual* is a single square, circle, or other shape that corresponds to a
   }), boundary: contour.margin(0.5cm))
   container()
   content[
-    === Duplicate
+    === Duplicate<toc-pedigree-duplicate>
 
     A *duplicate* is a type of individual that mimics another individual. They act like individuals in all other ways.
 
-    === Union
+    === Union<toc-pedigree-union>
 
     A *union* is a relationship between two individuals. They do not necessarily have any children.
   ]
 })
 
-=== Twin
+=== Twin<toc-pedigree-twin>
 
 A *twin* is an object that contains multiple individuals. If this object is the child of a children object, then they will be drawn like twins.
 
-=== Children
+=== Children<toc-pedigree-children>
 
 A *children* is an object that references a union or an individual as its parents and multiple (or zero) individuals or twin objects as its children.
 
 #hbar
-== Shapes
+== Shapes<toc-shapes>
 
 There are four shapes/sexes that an individual can have, which is specified using the third parameter of #raw("individual", lang: "typc").
 
@@ -123,7 +139,7 @@ There are four shapes/sexes that an individual can have, which is specified usin
 The #raw("\"miscarriage\"", lang: "typc") shape is offset slightly higher than the other shapes.
 
 #pagebreak()
-== Fills
+== Fills<toc-fills>
 There are eight preset fills available, which are specified using the #raw("fill", lang: "typc") parameter of #raw("individual", lang: "typc")
 
 #table(stroke: none, columns: (12.5%,) * 8, ..{
@@ -147,11 +163,11 @@ There are eight preset fills available, which are specified using the #raw("fill
 })
 
 #hbar
-== References
+== References<toc-references>
 
 Objects in the pedigree can reference other objects using *references*.
 
-=== Individual References
+=== Individual References<toc-references-individual>
 
 #meander.reflow({
   import meander: *
@@ -183,7 +199,7 @@ Objects in the pedigree can reference other objects using *references*.
   ]
 })
 
-=== Other References
+=== Other References<toc-references-other>
 
 Other objects can be referenced using their one-indexed ID. The ID of an object is how many objects of the same type, including itself, came before it.
 
@@ -222,10 +238,226 @@ Other objects can be referenced using their one-indexed ID. The ID of an object 
 >>>})
 ```, scope: (pedigrypst: pedigrypst))
 
-Duplicate are referenced with #raw("\"l\"", lang: "typc"), twins are referenced with #raw("\"t\"", lang: "typc"), unions are referenced with #raw("\"u\"", lang: "typc"), and childrens are referenced with #raw("\"c\"", lang: "typc").
+Duplicate are referenced with #raw("\"d\"", lang: "typc"), twins are referenced with #raw("\"t\"", lang: "typc"), unions are referenced with #raw("\"u\"", lang: "typc"), and childrens are referenced with #raw("\"c\"", lang: "typc").
 
 #pagebreak()
-== Functions
+== Decorations<toc-decorations>
+
+#let decorations-table(columns, pedigree-func, text-func, data) = {
+  import pedigrypst: *
+  let cells = data.map(((arguments, text, top, bottom),) => {
+    v(top)
+    align(center, pedigree-func(..arguments))
+    v(bottom)
+    raw(text-func(text), lang: "typc")
+  })
+  let real-cells = ()
+  for (index, cell) in cells.enumerate() {
+    if calc.rem(index, columns) == columns - 1 and index != cells.len() - 1 {
+      real-cells.push(table.hline())
+    }
+    real-cells.push(cell)
+  }
+  table(
+    columns: (100% / columns,) * columns, stroke: none, inset: (x: 5pt, y: 8.5pt),
+    ..real-cells
+  )
+}
+
+=== Individual Decorations<toc-decorations-individual>
+
+#{
+  import pedigrypst: *
+  decorations-table(
+    4,
+    (..args) => pedigree(length: 2cm, generation-labels: false, individual(1, 1, "male", label: none, ..args)),
+    text => "individual(\n\t1, 1, \"male\",\n\t" + text + ",\n)",
+    (
+      ((dead: true), "dead: true", 0pt, 0pt),
+      ((dead: "double"), "dead: \"double\"", 0pt, 0pt),
+      ((adopted: true), "adopted: true", 3.5pt, 3.5pt),
+      ((adopted: "alt"), "adopted: \"alt\"", 3.5pt, 3.5pt),
+      ((propositus: true), "propositus: true", 10.5pt, 0pt),
+      ((propositus: top), "propositus: top", 0pt, 7pt),
+      ((label: [Wowee]), "label: [Wowee]", 10.5pt, 1.5pt),
+      ((in-label: [P]), "label: [P]", 10.5pt, 7pt),
+    ),
+  )
+}
+
+=== Duplicate Decorations<toc-decorations-duplicate>
+#{
+  import pedigrypst: *
+  decorations-table(
+    2,
+    (..args) => pedigree(length: 2cm, generation-labels: false, {
+      individual(1, 1, "male")
+      duplicate(1, "i1-1", ..args)
+    }),
+    text => "duplicate(1, \"i1-1\", " + text + ")",
+    (
+      ((bezier: 2), "bezier: 2", 0pt, 0pt),
+      ((label: [Label]), "label: [Label]", 11.25pt, 0pt),
+    )
+  )
+}
+
+=== Twin Decorations<toc-decorations-twin>
+#{
+  import pedigrypst: *
+  decorations-table(
+    3,
+    (..args) => pedigree(length: 1.75cm, generation-labels: false, {
+      individual(1, 1, "male", label: none)
+      individual(2, 3, "male", label: none)
+      individual(2, 1, "male")
+      individual(2, 2, "male")
+      twins("i2-1", "i2-2", ..args)
+      children("i1-1", "i2-3", "t1")
+    }),
+    text => "twins(\n\t\"i2-1\", \"i2-2\",\n\t" + text + ",\n)",
+    (
+      ((monozygotic: true), "monozygotic: true", 0pt, 0pt),
+      ((monozygotic: "unknown"), "monozygotic: \"unknown\"", 0pt, 0pt),
+      ((label: [Twins]), "label: [Twins]", 0pt, 0pt)
+    )
+  )
+}
+#pagebreak()
+=== Union Decorations<toc-decorations-union>
+#{
+  import pedigrypst: *
+  decorations-table(
+    2,
+    (..args) => pedigree(length: 2cm, generation-labels: false, {
+      individual(1, 1, "male")
+      individual(1, 2, "female")
+      union("i1-1", "i1-2", ..args)
+    }),
+    text => "union(\n\t\"i1-1\", \"i1-2\",\n\t" + text + ",\n)",
+    (
+      ((consanguineous: true), "consanguineous: true", 0pt, 0pt),
+      ((label: [Hi]), "label: [Hi]", 0pt, 0pt),
+      ((divorced: true), "divorced: true", 0pt, 0pt),
+      ((divorced: 2), "divorced: 2", 0pt, 0pt),
+    )
+  )
+}
+
+=== Children Decorations<toc-decorations-children>
+#{
+  import pedigrypst: *
+  decorations-table(
+    2,
+    (..args) => pedigree(length: 2cm, generation-labels: false, {
+      individual(1, 1, "male", label: none)
+      individual(1, 2, "female", label: none)
+      union("i1-1", "i1-2")
+      if "infertile" in args.named() {
+        children("u1", ..args)
+      } else {
+        individual(2, 1, "male")
+        individual(2, 2, "female")
+        children("u1", "i2-1", "i2-2", ..args)
+      }
+    }),
+    text => {
+      if "infertile" in text { // very hack yes
+        "children(\"u1\", " + text + ")"
+      } else {
+        "children(\n\t\"u1\", \"i2-1\", \"i2-2\",\n\t" + text + ",\n)"
+      }
+    },
+    (
+      ((infertile: true), "infertile: true", 0pt, 47.5pt),
+      ((label: [Children]), "label: [Children]", 0pt, 0pt),
+    )
+  )
+}
+
+=== Pedigree Decorations<toc-decorations-pedigree>
+
+Note: The individuals and children are truncated from the code preview.
+
+#{
+  import pedigrypst: *
+  import draw: content
+  decorations-table(
+    2,
+    (..args) => pedigree(..args, {
+      individual(1, 1, "male", label: none)
+      individual(2, 1, "male", label: none)
+      children("i1-1", "i2-1")
+    }),
+    // text => "pedigree(\n\t" + text + ",\n\t{\n\t\tindividual(1, 1, \"male\")\n\t\tindividual(2, 1, \"male\")\n\t\tchildren(\"i1-1\", \"i2-1\")\n\t},\n)",
+    text => "pedigree(" + text + ")",
+    (
+      ((generation-height: 0.6), "generation-height: 0.5", 0pt, 11.25pt),
+      ((generation-labels: false), "generation-labels: false", 0pt, 0pt),
+      ((length: 1.5cm), "length: 1.5cm", 0pt, 0pt),
+      ((draw: () => content((-1, 0), [Foo])), "draw: () => content(\n\t(-1, 0), [Foo],\n)", 0pt, 22.1pt),
+    )
+  )
+}
+
+#pagebreak()
+== Example<toc-example>
+
+#let my-example(code) = tidy.show-example.show-example(code, scope: (
+  pedigree: pedigrypst.pedigree,
+  individual: pedigrypst.individual,
+  duplicate: pedigrypst.duplicate,
+  twins: pedigrypst.twins,
+  union: pedigrypst.union,
+  children: pedigrypst.children,
+))
+
+#my-example(```typc
+pedigree(
+  length: 2cm,
+  convergence-time: 250,
+  empty-style: red.lighten(50%),
+  {
+    individual(1, 1, "male")
+    individual(1, 2, "female")
+    individual(2, 1, "female")
+    individual(2, 2, "male")
+    individual(2, 3, "female")
+    individual(2, 4, "male")
+    individual(3, 1, "male")
+    individual(3, 2, "female")
+    individual(3, 3, "male")
+    individual(3, 4, "male")
+    individual(3, 5, "female")
+    individual(4, 1, "female")
+    individual(4, 2, "female")
+    individual(5, 1, "male")
+    individual(6, 1, "male")
+    individual(6, 2, "male")
+    individual(6, 3, "male")
+    individual(6, 4, "male", fill: "filled", propositus: true)
+
+    union("i1-1", "i1-2")
+    union("i2-1", "i2-2")
+    union("i2-3", "i2-4")
+    union("i3-1", "i4-1", consanguineous: true)
+    union("i3-2", "i3-3")
+    union("i3-4", "i3-5")
+    union("i5-1", "i4-2", consanguineous: true)
+
+    children("u1", "i2-2", "i2-4")
+    children("u2", "i3-1")
+    children("u3", "i3-3", "i3-4")
+    children("u4", "i5-1")
+    children("u5", "i4-1")
+    children("u6", "i4-2")
+    children("u7", "i6-1", "i6-2", "i6-3", "i6-4")
+  }
+)
+```)
+
+#pagebreak()
+== Functions<toc-functions>
 #let docs = tidy.parse-module(read("../src/main.typ"), scope: (
   meander: meander,
   pedigrypst: pedigrypst,
