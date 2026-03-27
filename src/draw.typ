@@ -498,5 +498,9 @@
         draw-individual(referred-individual.individual, x, y, individual.individual.lightness, draw-data)
       }
     }
+
+    if draw-data.draw != none {
+      (draw-data.draw)()
+    }
   })}
 }

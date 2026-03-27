@@ -39,6 +39,9 @@
   /// ```
   /// -> bool
   generation-labels: true,
+  /// Returns CeTZ content to add to the canvas after the pedigree is drawn.
+  /// -> function | none
+  draw: none,
   /// The #cetz-link("basics/styling", [CeTZ style]) to give to the outline of all individuals. Must be a dictionary.
   /// ```examplec
   /// >>> set text(font: "libertinus serif")
@@ -324,6 +327,7 @@
     length: length,
     length-scale: length-scale,
     generation-labels: generation-labels,
+    draw: draw,
     default-stroke-style: stroke-style,
     default-empty-style: empty-style,
     default-fill-style: fill-style,
