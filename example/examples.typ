@@ -1,4 +1,4 @@
-#import "main.typ": *
+#import "../src/main.typ": *
 
 #pedigree(length: 2cm, {
   individual(1, 1, "female", dead: "double", propositus: bottom + right, label: "Alice", dead-style: (paint: green))
