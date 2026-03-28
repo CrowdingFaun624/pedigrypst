@@ -1,6 +1,6 @@
 #import "@preview/tidy:0.4.3"
 #import "@preview/meander:0.4.1"
-#import "../src/main.typ" as pedigrypst: pedigree
+#import "@preview/pedigrypst:0.1.0" as pedigrypst: pedigree
 #import "@preview/cetz:0.4.2": canvas, draw
 #import "@preview/larrow:1.0.1": label-arrow
 
