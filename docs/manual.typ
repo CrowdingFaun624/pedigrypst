@@ -38,7 +38,7 @@
 ]
 
 #pagebreak()
-== Pedigree<toc-pedigree>
+== Pedigree
 #align(center, pedigree(length: 4cm, generation-labels: false, {
   import pedigrypst: *
   individual(1, 1, "male", label: none)
@@ -92,7 +92,7 @@
 
 There are five different types of objects in a pedigree in Pedigrypst.
 
-=== Individual<toc-pedigree-individual>
+=== Individual
 
 An *individual* is a single square, circle, or other shape that corresponds to a single organism.
 
@@ -106,26 +106,26 @@ An *individual* is a single square, circle, or other shape that corresponds to a
   }), boundary: contour.margin(0.5cm))
   container()
   content[
-    === Duplicate<toc-pedigree-duplicate>
+    === Duplicate
 
     A *duplicate* is a type of individual that mimics another individual. They act like individuals in all other ways.
 
-    === Union<toc-pedigree-union>
+    === Union
 
     A *union* is a relationship between two individuals. They do not necessarily have any children.
   ]
 })
 
-=== Twin<toc-pedigree-twin>
+=== Twin
 
 A *twin* is an object that contains multiple individuals. If this object is the child of a children object, then they will be drawn like twins.
 
-=== Children<toc-pedigree-children>
+=== Children
 
 A *children* is an object that references a union or an individual as its parents and multiple (or zero) individuals or twin objects as its children.
 
 #hbar
-== Shapes<toc-shapes>
+== Shapes
 
 There are four shapes/sexes that an individual can have, which is specified using the third parameter of #raw("individual", lang: "typc").
 
@@ -139,7 +139,7 @@ There are four shapes/sexes that an individual can have, which is specified usin
 The #raw("\"miscarriage\"", lang: "typc") shape is offset slightly higher than the other shapes.
 
 #pagebreak()
-== Fills<toc-fills>
+== Fills
 There are eight preset fills available, which are specified using the #raw("fill", lang: "typc") parameter of #raw("individual", lang: "typc")
 
 #table(stroke: none, columns: (12.5%,) * 8, ..{
@@ -163,11 +163,11 @@ There are eight preset fills available, which are specified using the #raw("fill
 })
 
 #hbar
-== References<toc-references>
+== References
 
 Objects in the pedigree can reference other objects using *references*.
 
-=== Individual References<toc-references-individual>
+=== Individual References
 
 #meander.reflow({
   import meander: *
@@ -199,7 +199,7 @@ Objects in the pedigree can reference other objects using *references*.
   ]
 })
 
-=== Other References<toc-references-other>
+=== Other References
 
 Other objects can be referenced using their one-indexed ID. The ID of an object is how many objects of the same type, including itself, came before it.
 
@@ -241,7 +241,7 @@ Other objects can be referenced using their one-indexed ID. The ID of an object 
 Duplicate are referenced with #raw("\"d\"", lang: "typc"), twins are referenced with #raw("\"t\"", lang: "typc"), unions are referenced with #raw("\"u\"", lang: "typc"), and childrens are referenced with #raw("\"c\"", lang: "typc").
 
 #pagebreak()
-== Decorations<toc-decorations>
+== Decorations
 
 #let decorations-table(columns, pedigree-func, text-func, data) = {
   import pedigrypst: *
@@ -264,7 +264,7 @@ Duplicate are referenced with #raw("\"d\"", lang: "typc"), twins are referenced 
   )
 }
 
-=== Individual Decorations<toc-decorations-individual>
+=== Individual Decorations
 
 #{
   import pedigrypst: *
@@ -285,7 +285,7 @@ Duplicate are referenced with #raw("\"d\"", lang: "typc"), twins are referenced 
   )
 }
 
-=== Duplicate Decorations<toc-decorations-duplicate>
+=== Duplicate Decorations
 #{
   import pedigrypst: *
   decorations-table(
@@ -302,7 +302,7 @@ Duplicate are referenced with #raw("\"d\"", lang: "typc"), twins are referenced 
   )
 }
 
-=== Twin Decorations<toc-decorations-twin>
+=== Twin Decorations
 #{
   import pedigrypst: *
   decorations-table(
@@ -324,7 +324,7 @@ Duplicate are referenced with #raw("\"d\"", lang: "typc"), twins are referenced 
   )
 }
 #pagebreak()
-=== Union Decorations<toc-decorations-union>
+=== Union Decorations
 #{
   import pedigrypst: *
   decorations-table(
@@ -344,7 +344,7 @@ Duplicate are referenced with #raw("\"d\"", lang: "typc"), twins are referenced 
   )
 }
 
-=== Children Decorations<toc-decorations-children>
+=== Children Decorations
 #{
   import pedigrypst: *
   decorations-table(
@@ -375,7 +375,7 @@ Duplicate are referenced with #raw("\"d\"", lang: "typc"), twins are referenced 
   )
 }
 
-=== Pedigree Decorations<toc-decorations-pedigree>
+=== Pedigree Decorations
 
 Note: The individuals and children are truncated from the code preview.
 
@@ -401,7 +401,7 @@ Note: The individuals and children are truncated from the code preview.
 }
 
 #pagebreak()
-== Example<toc-example>
+== Example
 
 #let my-example(code) = tidy.show-example.show-example(code, scope: (
   pedigree: pedigrypst.pedigree,
