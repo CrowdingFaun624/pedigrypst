@@ -5,6 +5,7 @@ Pedigrypst is a package for drawing [pedigrees](https://en.wikipedia.org/wiki/Pe
 <table>
 <tr>
 <td>
+    <!--https://www.researchgate.net/figure/Pedigree-The-proband-is-individual-VI-4-and-comes-from-a-consanguineous-marriage_fig1_363507081-->
     <a href="example/example1.typ">
         <img src="example/example1.png" alt="A pedigree showing six generations with two consanguineous, cross-generation unions." title="Consanguinuity"/>
     </a>
