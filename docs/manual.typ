@@ -280,7 +280,7 @@ Duplicate are referenced with #raw("\"d\"", lang: "typc"), twins are referenced 
       ((propositus: true), "propositus: true", 10.5pt, 0pt),
       ((propositus: top), "propositus: top", 0pt, 7pt),
       ((label: [Wowee]), "label: [Wowee]", 10.5pt, 1.5pt),
-      ((in-label: [P]), "label: [P]", 10.5pt, 7pt),
+      ((in-label: [P]), "in-label: [P]", 10.5pt, 7pt),
     ),
   )
 }
